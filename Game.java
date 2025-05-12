@@ -1,6 +1,6 @@
 public class Game {
     public static void main(String[] args) {
-        Deck.deck = new ArrayList<Integer>();
+        Deck.init();
 
         Scanner in = new Scanner(System.in);
 
@@ -22,20 +22,30 @@ public class Game {
             if (dealer.getValue() >= 17) {
                 dealer.stand();
                 System.out.printf("Dealer Stood. Current hand at $d\n", player.getValue());
+            } else {
+                dealer.hit();
             }
 
             if (player.getValue() > 21) {
                 System.out.printf("Player miss! Current hand at $d\n", player.getValue());
+                System.out.printf("Dealer wins with $d", dealer.getValue());
+                break;
             }
 
             if (dealer.getValue() > 21) {
                 System.out.printf("Dealer miss! Current hand at $d\n", dealer.getValue());
+                System.out.printf("Player wins with $d", player.getValue());
+                break;
             }
         }
 
         System.out.println("Both Player and Dealer have stood.");
         if (dealer.getValue() > player.getValue()) {
-            System.out.println("Dealer wins with");
+            System.out.printf("Dealer wins with $d", dealer.getValue());
+        } else if (dealer.getValue() < player.getValue()) {
+            System.out.printf("Player wins with $d", player.getValue());
+        } else {
+            System.out.println("Push.");
         }
     }
 }

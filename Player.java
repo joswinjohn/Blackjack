@@ -6,14 +6,26 @@ public class Player {
         value = 0;
         stood = false;
 
-        value += Deck.draw();
-        value += Deck.draw();
+        value += Deck.draw("Player");
+        value += Deck.draw("Player");
     }
 
-    public boolean hit() {
-        v = Deck.draw();
-        value += v; 
-        System.out.printf("Player Hit %d. Current hand at $d\n", v, value);
+    public void hit() {
+        int v = Deck.draw("Player");
+        if (v == 1) {
+            if (value <= 10) {
+                value += 11;
+                System.out.printf("Player Hit %d. Current hand at $d\n", 11, value);
+            }
+            else {
+                value += 1;
+                System.out.printf("Player Hit %d. Current hand at $d\n", 1, value);
+            }
+        }
+        else {
+            value += v; 
+            System.out.printf("Player Hit %d. Current hand at $d\n", v, value);
+        }
     }
 
     public boolean stand() {

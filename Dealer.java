@@ -1,4 +1,43 @@
-public class Dealer {
-    private int hand;
+public class Dealer{
+    private int value;
+    private boolean stood;
+    
+    public Dealer() {
+        value = 0;
+        stood = false;
 
+        value += Deck.draw("Dealer");
+        value += Deck.draw("Dealer");
+    }
+
+    public void hit() {
+        int v = Deck.draw("Dealer");
+        if (v == 1) {
+            if (value <= 10) {
+                value += 11;
+                System.out.printf("Dealer Hit %d. Current hand at $d\n", 11, value);
+            }
+            else {
+                value += 1;
+                System.out.printf("Dealer Hit %d. Current hand at $d\n", 1, value);
+            }
+        }
+        else {
+            value += v; 
+            System.out.printf("Dealer Hit %d. Current hand at $d\n", v, value);
+        }
+    }
+
+    public boolean stand() {
+        stood = true;
+        System.out.printf("Dealer Stood. Current hand at $d\n", value);
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public boolean isStood() {
+        return stood;
+    }
 }
