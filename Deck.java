@@ -1,11 +1,7 @@
 public class Deck {
-    private ArrayList<Integer> deck;
+    private static ArrayList<Integer> deck;
 
-    public Deck() {
-         init();
-    }
-
-    public void init() {
+    public static void init() {
         for (int i = 1; i <= 13; i++) {
             deck.add(i);
             deck.add(i);
@@ -14,9 +10,8 @@ public class Deck {
         }
     }
     
-    public int draw() {
+    public static int draw() {
         int i = (int)(Math.random()) * deck.size();
-
         return deck.remove(i);
     }
 }
