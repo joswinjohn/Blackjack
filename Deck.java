@@ -1,7 +1,9 @@
+import java.util.HashMap;
+import java.util.ArrayList;
+
 public class Deck {
     private static ArrayList<Integer> deck;
     private static HashMap<Integer, String> map;
-
 
     public static void init() {
         deck = new ArrayList<Integer>();
@@ -29,11 +31,12 @@ public class Deck {
         map.put(13, "King");
     }
     
-    public static int draw(String p) {
-        int i = (int)(Math.random()) * deck.size();
-
-        System.out.printf("$s drew a $s", p, map.get(i));
-
+    public static int draw() {
+        int i = (int)(Math.random() * deck.size());
         return deck.remove(i);
+    }
+
+    public static String getCard(int i) {
+        return map.get(i);
     }
 }
