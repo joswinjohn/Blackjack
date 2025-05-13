@@ -11,7 +11,7 @@ public class Dealer{
         hidden = _hit();
         System.out.printf("Dealer drew %s and one hidden card\n", Deck.getCard(c1));
 
-        value += c1 + hidden;
+        value += c1;
     }
 
     // hit without any standard output
@@ -54,6 +54,7 @@ public class Dealer{
 
     public void reveal() {
         System.out.printf("Dealer\'s hidden card was %s\n", Deck.getCard(hidden));
+        value += hidden;
     }
 
     public void stand() {
