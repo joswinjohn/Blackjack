@@ -9,7 +9,9 @@ public class Game {
 
         // create dealer and player
         Dealer dealer = new Dealer();
+        dealer.initialDraw();
         Player player = new Player();
+        player.initialDraw();
 
         // start dealing hands for the player
         while (!player.isStood()) {
@@ -64,7 +66,7 @@ public class Game {
         // Once all have stood, check values and declare the winner
         System.out.println("Both Player and Dealer have stood.");
         if (dealer.getValue() == player.getValue()) {
-            System.out.printf("Push, Both Player and Dealer have 21.\n");
+            System.out.printf("Push, Both Player and Dealer have %d.\n", player.getValue());
             return;
         }
         if (dealer.getValue() > player.getValue()) {

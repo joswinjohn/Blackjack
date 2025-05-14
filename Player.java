@@ -5,29 +5,31 @@ public class Player {
     public Player() {
         value = 0;
         stood = false;
+    }
 
-        int c1 = hitNoVerbose();
-        int c2 = hitNoVerbose();
+    public void initialDraw() {
+        String c1 = initialHit();
+        String c2 = initialHit();
 
-        value += c1 + c2;
-        System.out.printf("Player drew %s and %s\n", Deck.getCard(c1), Deck.getCard(c2));
+        System.out.printf("Player drew %s and %s\n", c1, c2);
     }
 
     // hit without any standard output
-    protected int hitNoVerbose() {
+    protected String initialHit() {
         int v = Deck.draw();
         if (v == 1) {
             if (value <= 10) {
-                return 11;
+                value += 11;
             } else {
-                return 1;
+                value += 1;
             }
         } else if (v > 10) {
-            return 10;
+            value += 10;
         }
         else {
-            return v; 
+            value += v;
         }
+        return Deck.getCard(v);
     }
 
     // verbose hit for use outside of the class
