@@ -1,20 +1,20 @@
 public class Player {
-    private int value;
-    private boolean stood;
+    protected int value;
+    protected boolean stood;
     
     public Player() {
         value = 0;
         stood = false;
 
-        int c1 = _hit();
-        int c2 = _hit();
+        int c1 = hitNoVerbose();
+        int c2 = hitNoVerbose();
 
         value += c1 + c2;
         System.out.printf("Player drew %s and %s\n", Deck.getCard(c1), Deck.getCard(c2));
     }
 
     // hit without any standard output
-    private int _hit() {
+    protected int hitNoVerbose() {
         int v = Deck.draw();
         if (v == 1) {
             if (value <= 10) {
@@ -30,7 +30,7 @@ public class Player {
         }
     }
 
-    // vebose hit for use outside of the class
+    // verbose hit for use outside of the class
     public void hit() {
         int v = Deck.draw();
         if (v == 1) {

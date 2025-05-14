@@ -1,36 +1,18 @@
-public class Dealer{
-    private int value;
-    private boolean stood;
+public class Dealer extends Player {
     private int hidden;
     
     public Dealer() {
         value = 0;
         stood = false;
 
-        int c1 = _hit();
-        hidden = _hit();
+        int c1 = super.hitNoVerbose();
+        hidden = super.hitNoVerbose();
         System.out.printf("Dealer drew %s and one hidden card\n", Deck.getCard(c1));
 
         value += c1;
     }
 
-    // hit without any standard output
-    private int _hit() {
-        int v = Deck.draw();
-        if (v == 1) {
-            if (value <= 10) {
-                return 11;
-            } else {
-                return 1;
-            }
-        } else if (v > 10) {
-            return 10;
-        }
-        else {
-            return v; 
-        }
-    }
-
+    // verbose hit for use outside of the class
     public void hit() {
         int v = Deck.draw();
         if (v == 1) {
@@ -52,6 +34,7 @@ public class Dealer{
         }
     }
 
+    // reveal hidden card from inital draw
     public void reveal() {
         System.out.printf("Dealer\'s hidden card was %s\n", Deck.getCard(hidden));
         value += hidden;
@@ -60,13 +43,5 @@ public class Dealer{
     public void stand() {
         stood = true;
         System.out.printf("Dealer Stood. Current hand at %d\n", value);
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public boolean isStood() {
-        return stood;
     }
 }
